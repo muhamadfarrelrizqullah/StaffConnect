@@ -38,7 +38,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($infologin)) {
             if (Auth::user()->status == 'Active') {
-                return redirect('/land');
+                return redirect('/admin/dashboard');
             } else {
                 Auth::logout();
                 return redirect('/');
