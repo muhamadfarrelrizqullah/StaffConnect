@@ -19,13 +19,11 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::get('/land', function () {
-    return view('welcome');
-});
-
 //Authentication
 Route::get('/', [AuthController::class, 'login'])->name('login');
+Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/authentication', [AuthController::class, 'authentication'])->name('authentication');
+Route::post('/register-process', [AuthController::class, 'registerProcess'])->name('register-process');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //Admin

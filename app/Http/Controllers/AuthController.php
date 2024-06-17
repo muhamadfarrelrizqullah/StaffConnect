@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -15,6 +16,11 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
+    public function register()
+    {
+        return view('auth.register');
+    }
+
     public function logout(Request $request)
     {
         Auth::logout();
@@ -23,28 +29,41 @@ class AuthController extends Controller
 
     public function authentication(Request $request)
     {
-        Session::flash('email', $request->email);
-        Session::flash('password', $request->password);
-
         $request->validate([
             'email' => 'required',
             'password' => 'required',
         ]);
 
-        $infologin = [
-            'email' => $request->email,
-            'password' => $request->password
-        ];
+        $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($infologin)) {
+        if (Auth::attempt($credentials)) {
             if (Auth::user()->status == 'Active') {
-                return redirect('/admin/dashboard');
+                return response()->json(['success' => true, 'redirect' => route('admin-dashboard')]);
             } else {
                 Auth::logout();
-                return redirect('/');
+                return response()->json(['success' => false, 'message' => 'Account is not active']);
             }
         } else {
-            return redirect('/');
+            return response()->json(['success' => false, 'message' => 'Invalid email or password']);
         }
+    }
+
+
+    public function registerProcess(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:5',
+            'confirmPassword' => 'required|string|same:password',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return response()->json(['redirect' => route('login')]);
     }
 }

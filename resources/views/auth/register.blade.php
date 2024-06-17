@@ -3,7 +3,7 @@
 
 <head>
     <base href="../../../" />
-    <title>Login - StaffConnect</title>
+    <title>Register - StaffConnect</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" href="assets/media/logos/favicon.png" />
@@ -37,11 +37,16 @@
             <div class="d-flex flex-column flex-lg-row-fluid w-lg-50 p-10 order-2 order-lg-1">
                 <div class="d-flex flex-center flex-column flex-lg-row-fluid">
                     <div class="w-lg-500px p-10">
-                        <form class="form w-100" action="{{ route('authentication') }}" method="POST" id="loginForm">
+                        <form class="form w-100" action="{{ route('register-process') }}" method="POST"
+                            id="registerForm">
                             @csrf
                             <div class="text-center mb-11">
-                                <h1 class="text-gray-900 fw-bolder mb-3">Welcome Back, User!</h1>
-                                <div class="text-gray-500 fw-semibold fs-6">Please sign in to your account</div>
+                                <h1 class="text-gray-900 fw-bolder mb-3">Create Your Account!</h1>
+                                <div class="text-gray-500 fw-semibold fs-6">Please register to get started</div>
+                            </div>
+                            <div class="fv-row mb-8">
+                                <input type="text" placeholder="Enter your name" name="name"
+                                    class="form-control bg-transparent" />
                             </div>
                             <div class="fv-row mb-8">
                                 <input type="email" placeholder="Enter your email" name="email"
@@ -50,16 +55,23 @@
                             <div class="fv-row mb-3">
                                 <input type="password" placeholder="Enter your password" name="password"
                                     class="form-control bg-transparent" />
+                                <div class="text-muted mt-2">Use 5 or more characters with a mix of letters, numbers &
+                                    symbols.</div>
+                            </div>
+                            <div class="fv-row mb-3">
+                                <input type="password" placeholder="Confirm your password" name="confirmPassword"
+                                    class="form-control bg-transparent" />
+                                <div class="text-muted mt-2">Password and confirm password must match.</div>
                             </div>
                             <div class="d-grid mb-10">
                                 <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
-                                    <span class="indicator-label">Sign In</span>
+                                    <span class="indicator-label">Submit</span>
                                     <span class="indicator-progress">Please wait...
                                         <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                 </button>
                             </div>
-                            <div class="text-gray-500 text-center fw-semibold fs-6">Don't have an account yet?
-                                <a href="{{ route('register') }}" class="link-primary">Register</a>
+                            <div class="text-gray-500 text-center fw-semibold fs-6">Have an account yet?
+                                <a href="{{ route('login') }}" class="link-primary">Login</a>
                             </div>
                         </form>
                     </div>
@@ -103,8 +115,12 @@
     <script src="assets/js/scripts.bundle.js"></script>
     <script src="assets/js/custom/authentication/sign-in/general.js"></script>
     <script>
-        $(document).ready(function() {
-            const swalMixinSuccess = Swal.mixin({
+        $('#registerForm').on('submit', function(e) {
+            e.preventDefault();
+            let form = $(this);
+            let formData = form.serialize();
+
+            const swalMixinSucces = Swal.mixin({
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
@@ -114,48 +130,36 @@
                 cancelButtonColor: '#d33',
             });
 
-            $('#loginForm').on('submit', function(e) {
-                e.preventDefault();
-                let form = $(this);
-                let formData = form.serialize();
+            $.ajax({
+                url: form.attr('action'),
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    console.log(response);
+                    swalMixinSucces.fire({
+                        icon: 'success',
+                        title: 'Registration Successful!',
+                        text: 'Please log in.',
+                    }).then(() => {
+                        window.location.href = response.redirect;
+                    });
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseJSON);
 
-                $.ajax({
-                    url: form.attr('action'),
-                    type: 'POST',
-                    data: formData,
-                    success: function(response) {
-                        console.log(response);
-                        if (response.success) {
-                            swalMixinSuccess.fire({
-                                icon: 'success',
-                                title: 'Login Successful!',
-                                text: 'Redirecting to dashboard...',
-                            }).then(() => {
-                                window.location.href = response.redirect;
-                            });
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Login Failed!',
-                                text: response.message,
-                            });
-                        }
-                    },
-                    error: function(xhr) {
-                        console.log(xhr.responseJSON);
-                        let errorMessage = 'Unknown error occurred. Please try again.';
-                        if (xhr.responseJSON && xhr.responseJSON.errors) {
-                            errorMessage = Object.values(xhr.responseJSON.errors).join('<br>');
-                        } else if (xhr.responseJSON && xhr.responseJSON.message) {
-                            errorMessage = xhr.responseJSON.message;
-                        }
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Login Failed!',
-                            html: errorMessage,
-                        });
+                    let errorMessage = 'Unknown error occurred. Please try again.';
+                    if (xhr.responseJSON && xhr.responseJSON.errors) {
+                        errorMessage = Object.values(xhr.responseJSON.errors).join('<br>');
+                    } else if (xhr.responseJSON && xhr.responseJSON.message) {
+                        errorMessage = xhr.responseJSON.message;
                     }
-                });
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Registration Failed!',
+                        html: errorMessage
+                    });
+                }
             });
         });
     </script>
