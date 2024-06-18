@@ -7,7 +7,6 @@ use App\Http\Controllers\DepartementController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ProfileController;
-use App\Models\Departement;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +38,9 @@ Route::put('/admin/departement-update', [DepartementController::class, 'update']
 Route::delete('/admin/departement-delete/{id}', [DepartementController::class, 'destroy'])->name('admin-departementdelete');
 Route::post('/admin/departement-create', [DepartementController::class, 'store'])->name('admin-departementcreate');
 Route::get('/admin/departement-export', [DepartementController::class, 'export'])->name('admin-departementexport');
+
+Route::get('/admin/position-data', [PositionController::class, 'read'])->name('admin-positiondata');
+Route::put('/admin/position-update', [PositionController::class, 'update'])->name('admin-positionupdate');
+Route::delete('/admin/position-delete/{id}', [PositionController::class, 'destroy'])->name('admin-positiondelete');
+Route::post('/admin/position-create', [PositionController::class, 'store'])->name('admin-positioncreate');
+Route::get('/admin/position-export', [PositionController::class, 'export'])->name('admin-positionexport');

@@ -76,7 +76,7 @@
                         @csrf
                         <div class="d-flex flex-column mb-7 fv-row">
                             <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                                <span>Departement Name</span>
+                                <span class="required">Departement Name</span>
                             </label>
                             <input type="text" class="form-control form-control-solid"
                                 placeholder="Enter the departement name" id="addName" name="name">
@@ -85,7 +85,7 @@
                             <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
                                 <span>Departement Description</span>
                             </label>
-                            <input type="textarea" class="form-control form-control-solid"
+                            <input type="text" class="form-control form-control-solid"
                                 placeholder="Enter the departement description" id="addDescription" name="description">
                         </div>
                         <div class="text-center pt-15">
@@ -122,7 +122,7 @@
                         <input type="hidden" id="id" name="id">
                         <div class="d-flex flex-column mb-7 fv-row">
                             <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                                <span>Departement Name</span>
+                                <span class="required">Departement Name</span>
                             </label>
                             <input type="text" class="form-control form-control-solid"
                                 placeholder="" id="updateName" name="name">
@@ -131,7 +131,7 @@
                             <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
                                 <span>Departement Description</span>
                             </label>
-                            <input type="textarea" class="form-control form-control-solid"
+                            <input type="text" class="form-control form-control-solid"
                                 placeholder="" id="updateDescription" name="description">
                         </div>
                         <div class="text-center pt-15">
@@ -175,7 +175,7 @@
                             <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
                                 <span>Departement Description</span>
                             </label>
-                            <input type="textarea" class="form-control form-control-solid" placeholder=""
+                            <input type="text" class="form-control form-control-solid" placeholder=""
                                 id="detailDescription" readonly>
                         </div>
                         <div class="text-center pt-15">
@@ -197,9 +197,6 @@
                 processing: true,
                 serverSide: true,
                 ajax: "{{ route('admin-departementdata') }}",
-                order: [
-                    [1, 'asc']
-                ],
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',
@@ -219,9 +216,12 @@
                     {
                         data: 'description',
                         name: 'description',
-                        orderable: true,
                         render: function(data, type, row, meta) {
-                            return `<span class="text-gray-900 fw-bold fs-6">${data}</span>`;
+                            if (data) {
+                                return `<span class="text-gray-900 fw-bold fs-6">${data}</span>`;
+                            } else {
+                                return `<span class="text-gray-900">...</span>`;
+                            }
                         }
                     },
                     {

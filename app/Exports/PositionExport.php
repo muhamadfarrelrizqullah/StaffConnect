@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\Departement;
+use App\Models\Position;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -13,22 +13,22 @@ use PhpOffice\PhpSpreadsheet\Style\Color;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Style\Border;
 
-class DepartementExport implements FromCollection, WithHeadings, WithStyles, ShouldAutoSize 
+class PositionExport implements FromCollection, WithHeadings, WithStyles, ShouldAutoSize 
 {
     public function collection()
     {
-        return Departement::all(['id', 'name', 'description']);
+        return Position::all(['id', 'title', 'level', 'description']);
     }
 
     public function headings(): array
     {
-        return ['ID', 'Departement Name', 'Description'];
+        return ['ID', 'Position Title', 'Position Level', 'Description'];
     }
 
     public function styles(Worksheet $sheet)
     {
         $rowCount = $this->collection()->count() + 1; 
-        $sheet->getStyle('A1:C1')->applyFromArray([
+        $sheet->getStyle('A1:D1')->applyFromArray([
             'font' => [
                 'bold' => true,
                 'color' => ['argb' => Color::COLOR_WHITE],
@@ -45,7 +45,7 @@ class DepartementExport implements FromCollection, WithHeadings, WithStyles, Sho
             ],
         ]);
         if ($rowCount > 1) {
-            $range = 'A2:C' . $rowCount;
+            $range = 'A2:D' . $rowCount;
             $sheet->getStyle($range)->applyFromArray([
                 'borders' => [
                     'allBorders' => [

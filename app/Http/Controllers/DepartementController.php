@@ -34,7 +34,7 @@ class DepartementController extends Controller
         $departement->description = $request->description;
         $departement->save();
 
-        return redirect()->back()->with('success', 'departement added successfully');
+        return redirect()->back()->with('success', 'Departement added successfully');
     }
     
     // Delete Data
