@@ -109,11 +109,11 @@
                                     <img alt="Logo" src="assets/media/avatars/blank.png" />
                                 </div>
                                 <div class="d-flex flex-column">
-                                    <div class="fw-bold d-flex align-items-center fs-8">Name<span
+                                    <div class="fw-bold d-flex align-items-center fs-8">{{ auth()->user()->name }}<span
                                             class="badge badge-light-primary fw-bold fs-8 px-2 py-1 ms-2">Admin</span>
                                     </div>
                                     <a href=""
-                                        class="fw-semibold text-muted text-hover-primary fs-9">test@mail</a>
+                                        class="fw-semibold text-muted text-hover-primary fs-9">{{ auth()->user()->email }}</a>
                                 </div>
                             </div>
                         </div>

@@ -27,6 +27,7 @@ class AuthController extends Controller
         return redirect('/');
     }
 
+    // Login User Auth
     public function authentication(Request $request)
     {
         $request->validate([
@@ -48,7 +49,7 @@ class AuthController extends Controller
         }
     }
 
-
+    // Register User Data
     public function registerProcess(Request $request)
     {
         $request->validate([

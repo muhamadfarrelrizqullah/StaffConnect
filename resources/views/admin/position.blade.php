@@ -137,11 +137,11 @@
                                 <span class="required">Position Title</span>
                             </label>
                             <input type="text" class="form-control form-control-solid"
-                                placeholder="Enter the position title" id="updateTitle" name="title">
+                                placeholder="" id="updateTitle" name="title">
                         </div>
                         <div class="d-flex flex-column mb-7 fv-row">
                             <label class="required fs-6 fw-semibold mb-2">Level</label>
-                            <select class="form-select form-select-solid" data-placeholder="Select the position level"
+                            <select class="form-select form-select-solid" data-placeholder=""
                                 data-hide-search="true" id="updateLevel" name="level">
                                 <option value="" selected disabled>Select the position level</option>
                                 <option value="Junior">Junior</option>
@@ -154,7 +154,7 @@
                                 <span>Position Description</span>
                             </label>
                             <input type="text" class="form-control form-control-solid"
-                                placeholder="Enter the position description" id="updateDescription" name="description">
+                                placeholder="" id="updateDescription" name="description">
                         </div>
                         <div class="text-center pt-15">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
@@ -246,8 +246,14 @@
                         data: 'level',
                         name: 'level',
                         orderable: true,
-                        render: function(data, type, row, meta) {
-                            return `<span class="text-gray-900 fw-bold fs-6">${data}</span>`;
+                        render: function(data, type, row) {
+                            if (data === 'Manager') {
+                                return `<span class="badge badge-light-warning">${data}</span>`;
+                            } else if (data === 'Senior') {
+                                return `<span class="badge badge-light-primary">${data}</span>`;
+                            } else {
+                                return `<span class="badge badge-light-success">${data}</span>`;
+                            }
                         }
                     },
                     {

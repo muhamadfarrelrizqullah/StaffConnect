@@ -44,3 +44,12 @@ Route::put('/admin/position-update', [PositionController::class, 'update'])->nam
 Route::delete('/admin/position-delete/{id}', [PositionController::class, 'destroy'])->name('admin-positiondelete');
 Route::post('/admin/position-create', [PositionController::class, 'store'])->name('admin-positioncreate');
 Route::get('/admin/position-export', [PositionController::class, 'export'])->name('admin-positionexport');
+
+Route::get('/admin/employee-data', [EmployeeController::class, 'read'])->name('admin-employeedata');
+Route::put('/admin/employee-update', [EmployeeController::class, 'update'])->name('admin-employeeupdate');
+Route::delete('/admin/employee-delete/{id}', [EmployeeController::class, 'destroy'])->name('admin-employeedelete');
+Route::post('/admin/employee-create', [EmployeeController::class, 'store'])->name('admin-employeecreate');
+Route::get('/admin/employee-export', [EmployeeController::class, 'export'])->name('admin-employeeexport');
+
+Route::get('/admin/profile-edit', [ProfileController::class, 'edit'])->name('admin-profileedit');
+Route::post('/admin/profile-edit', [ProfileController::class, 'update'])->name('admin-editprocess');
