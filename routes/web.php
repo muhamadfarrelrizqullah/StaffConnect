@@ -33,6 +33,8 @@ Route::get('/admin/employee', [EmployeeController::class, 'index'])->name('admin
 Route::get('/admin/position', [PositionController::class, 'index'])->name('admin-position');
 Route::get('/admin/profile', [ProfileController::class, 'index'])->name('admin-profile');
 
+Route::get('/admin/dashboard-data', [DashboardController::class, 'read'])->name('admin-dashboarddata');
+
 Route::get('/admin/departement-data', [DepartementController::class, 'read'])->name('admin-departementdata');
 Route::put('/admin/departement-update', [DepartementController::class, 'update'])->name('admin-departementupdate');
 Route::delete('/admin/departement-delete/{id}', [DepartementController::class, 'destroy'])->name('admin-departementdelete');
