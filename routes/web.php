@@ -26,6 +26,7 @@ Route::post('/authentication', [AuthController::class, 'authentication'])->name(
 Route::post('/register-process', [AuthController::class, 'registerProcess'])->name('register-process');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::middleware('auth.custom')->group(function () {
 //Admin
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin-dashboard');
 Route::get('/admin/departement', [DepartementController::class, 'index'])->name('admin-departement');
@@ -55,3 +56,4 @@ Route::get('/admin/employee-export', [EmployeeController::class, 'export'])->nam
 
 Route::get('/admin/profile-edit', [ProfileController::class, 'edit'])->name('admin-profileedit');
 Route::post('/admin/profile-edit', [ProfileController::class, 'update'])->name('admin-editprocess');
+});

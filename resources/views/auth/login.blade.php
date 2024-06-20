@@ -47,7 +47,7 @@
                                 <input type="email" placeholder="Enter your email" name="email"
                                     class="form-control bg-transparent" />
                             </div>
-                            <div class="fv-row mb-3">
+                            <div class="fv-row mb-8">
                                 <input type="password" placeholder="Enter your password" name="password"
                                     class="form-control bg-transparent" />
                             </div>
