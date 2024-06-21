@@ -88,6 +88,8 @@
                             </div>
                             <div class="card-body d-flex justify-content-center align-items-center p-0">
                                 <div id="departementChart">
+                                    <input type="hidden" id="departementChartData"
+                                        value="{{ json_encode($employeeDepartements) }}">
                                 </div>
                             </div>
                         </div>
@@ -121,8 +123,7 @@
                         </div>
                     </div>
                     <div class="col-xl-4">
-                        <div class="card h-lg-100"
-                            style="background: linear-gradient(112.14deg, #FF8A00 0%, #E96922 100%)">
+                        <div class="card h-lg-100" style="background: linear-gradient(112.14deg, #FF8A00 0%, #E96922 100%)">
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-sm-7 pe-0 mb-5 mb-sm-0">
@@ -131,7 +132,8 @@
                                             <div class="mb-7">
                                                 <div class="mb-6">
                                                     <h3 class="fs-2 fw-bold text-white">Get started now!</h3>
-                                                    <span class="fw-semibold fs-6 text-white opacity-75">Record employee data
+                                                    <span class="fw-semibold fs-6 text-white opacity-75">Record employee
+                                                        data
                                                         effortlessly with Staff Connect!</span>
                                                 </div>
                                             </div>
@@ -205,79 +207,6 @@
             $(window).resize(function() {
                 tabel.columns.adjust().responsive.recalc();
             });
-        });
-        
-        // Chart Dashboard
-        document.addEventListener('DOMContentLoaded', function() {
-            let departementsData = @json($employeeDepartements);
-            let chartData = departementsData.map(function(departement) {
-                return {
-                    x: departement.name,
-                    y: departement.employee_count
-                };
-            });
-            let options = {
-                series: [{
-                    name: 'Employees',
-                    data: chartData.map(data => data.y)
-                }],
-                chart: {
-                    type: 'bar',
-                    height: 300,
-                    width: 500
-                },
-                xaxis: {
-                    categories: chartData.map(data => data.x),
-                },
-                yaxis: {
-                    title: {
-                        text: 'Number of Employees',
-                        forceNiceScale: true
-                    },
-                    labels: {
-                        formatter: function(value) {
-                            return parseInt(value);
-                        }
-                    }
-                },
-                plotOptions: {
-                    bar: {
-                        borderRadius: 4,
-                        distributed: true
-                    }
-                },
-                dataLabels: {
-                    enabled: false
-                },
-                legend: {
-                    position: 'bottom'
-                },
-                responsive: [{
-                    breakpoint: 768,
-                    options: {
-                        chart: {
-                            height: 300,
-                            width: '100%',
-                            toolbar: {
-                                show: false
-                            }
-                        },
-                        yaxis: {
-                            title: {
-                                text: 'Number of Employees',
-                                forceNiceScale: true
-                            },
-                            labels: {
-                                formatter: function(value) {
-                                    return parseInt(value);
-                                }
-                            }
-                        },
-                    }
-                }]
-            };
-            var chart = new ApexCharts(document.querySelector("#departementChart"), options);
-            chart.render();
         });
     </script>
 @endpush

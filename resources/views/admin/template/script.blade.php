@@ -17,4 +17,8 @@
 <script src="assets/plugins/custom/datatables.responsive/dataTables.responsive.js"></script>
 <script src="assets/plugins/custom/apexcharts/apexcharts.min.js"></script>
 
+{{-- custom --}}
+<script src="assets/plugins/custom/apexcharts/apexcharts.js"></script>
+
+
 @stack('script')
