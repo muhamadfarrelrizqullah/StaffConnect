@@ -13,8 +13,19 @@ class DepartementSeeder extends Seeder
      */
     public function run(): void
     {
-        Departement::create(['name' => 'IT Department', 'description' => 'Responsible for managing IT infrastructure']);
-        Departement::create(['name' => 'HR Department', 'description' => 'Responsible for managing human resources']);
-        Departement::create(['name' => 'Finance Department', 'description' => 'Responsible for financial management']);
+        // Array Seeder Departement
+        $departements = [
+            ['name' => 'IT', 'description' => 'Responsible for managing IT infrastructure'],
+            ['name' => 'HR', 'description' => 'Responsible for managing human resources'],
+            ['name' => 'Finance', 'description' => 'Responsible for financial management'],
+            ['name' => 'Marketing', 'description' => 'Responsible for marketing activities'],
+            ['name' => 'Sales', 'description' => 'Responsible for sales operations'],
+            ['name' => 'Customer Support', 'description' => 'Responsible for customer support services'],
+        ];
+
+        // Foreach Each data
+        foreach ($departements as $dept) {
+            Departement::create($dept);
+        }
     }
 }
