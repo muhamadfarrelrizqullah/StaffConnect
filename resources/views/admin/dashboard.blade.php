@@ -123,7 +123,7 @@
                         </div>
                     </div>
                     <div class="col-xl-4">
-                        <div class="card h-lg-100" style="background: linear-gradient(112.14deg, #FF8A00 0%, #E96922 100%)">
+                        <div class="card h-lg-100" style="background-color: white">
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-sm-7 pe-0 mb-5 mb-sm-0">
@@ -131,10 +131,9 @@
                                             class="d-flex justify-content-between h-100 flex-column pt-xl-5 pb-xl-5 ps-xl-7">
                                             <div class="mb-7">
                                                 <div class="mb-6">
-                                                    <h3 class="fs-2 fw-bold text-white">Get started now!</h3>
-                                                    <span class="fw-semibold fs-6 text-white opacity-75">Record employee
-                                                        data
-                                                        effortlessly with Staff Connect!</span>
+                                                    <h3 class="fs-2 fw-bold">Get started now!</h3>
+                                                    <span class="fw-semibold fs-6 opacity-75">Record employee
+                                                        data effortlessly with Staff Connect!</span>
                                                 </div>
                                             </div>
                                         </div>

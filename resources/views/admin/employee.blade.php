@@ -428,7 +428,7 @@
                         name: 'departement_name',
                         orderable: true,
                         render: function(data, type, row, meta) {
-                            return `<span class="text-gray-900 fw-bold fs-8">${data}</span>`;
+                            return `<span class="badge badge-secondary">${data}</span>`;
                         }
                     },
                     {
@@ -436,7 +436,7 @@
                         name: 'position_title',
                         orderable: true,
                         render: function(data, type, row, meta) {
-                            return `<span class="text-gray-900 fw-bold fs-8">${data}</span>`;
+                            return `<span class="badge badge-secondary">${data}</span>`;
                         }
                     },
                     {

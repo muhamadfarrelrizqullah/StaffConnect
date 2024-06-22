@@ -77,6 +77,18 @@
                             <span class="menu-title">Positions</span>
                         </a>
                     </div>
+                    <div class="menu-item">
+                        <a class="menu-link {{ Request::routeIs('admin-user') ? 'active' : '' }}"
+                            href="{{ route('admin-user') }}">
+                            <span class="menu-icon">
+                                <i class="ki-duotone ki-teacher fs-2">
+                                    <span class="path1"></span>
+                                    <span class="path2"></span>
+                                </i>
+                            </span>
+                            <span class="menu-title">Users</span>
+                        </a>
+                    </div>
                     <div class="menu-item pt-5">
                         <div class="menu-content">
                             <span class="menu-heading fw-bold text-uppercase fs-7">Account</span>

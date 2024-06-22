@@ -7,6 +7,7 @@ use App\Http\Controllers\DepartementController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('adm
 Route::get('/admin/departement', [DepartementController::class, 'index'])->name('admin-departement');
 Route::get('/admin/employee', [EmployeeController::class, 'index'])->name('admin-employee');
 Route::get('/admin/position', [PositionController::class, 'index'])->name('admin-position');
+Route::get('/admin/user', [UserController::class, 'index'])->name('admin-user');
 Route::get('/admin/profile', [ProfileController::class, 'index'])->name('admin-profile');
 
 Route::get('/admin/dashboard-data', [DashboardController::class, 'read'])->name('admin-dashboarddata');
@@ -53,6 +55,10 @@ Route::put('/admin/employee-update', [EmployeeController::class, 'update'])->nam
 Route::delete('/admin/employee-delete/{id}', [EmployeeController::class, 'destroy'])->name('admin-employeedelete');
 Route::post('/admin/employee-create', [EmployeeController::class, 'store'])->name('admin-employeecreate');
 Route::get('/admin/employee-export', [EmployeeController::class, 'export'])->name('admin-employeeexport');
+
+Route::get('/admin/user-data', [UserController::class, 'read'])->name('admin-userdata');
+Route::put('/admin/user-update', [UserController::class, 'update'])->name('admin-userupdate');
+Route::delete('/admin/user-delete/{id}', [UserController::class, 'destroy'])->name('admin-userdelete');
 
 Route::get('/admin/profile-edit', [ProfileController::class, 'edit'])->name('admin-profileedit');
 Route::post('/admin/profile-edit', [ProfileController::class, 'update'])->name('admin-editprocess');
