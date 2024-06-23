@@ -16,11 +16,13 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
+    // Register View
     public function register()
     {
         return view('auth.register');
     }
 
+    // Logout User
     public function logout(Request $request)
     {
         Auth::logout();

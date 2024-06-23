@@ -13,6 +13,7 @@ class ProfileController extends Controller
         return view('admin.profile');
     }
 
+    // View Edit Profile With Compact Data
     public function edit()
     {
         $userId = Auth::id();

@@ -123,7 +123,7 @@
                         </div>
                     </div>
                     <div class="col-xl-4">
-                        <div class="card h-lg-100" style="background-color: white">
+                        <div class="card h-lg-100">
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-sm-7 pe-0 mb-5 mb-sm-0">

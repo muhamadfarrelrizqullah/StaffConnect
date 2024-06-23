@@ -10,6 +10,7 @@ use Yajra\DataTables\Facades\DataTables;
 
 class DashboardController extends Controller
 {
+    // Compact Data For Statistic
     public function index()
     {
         $totalEmployees = Employee::count();
@@ -19,6 +20,7 @@ class DashboardController extends Controller
         return view('admin.dashboard', compact('totalEmployees', 'totalPositions', 'employeeDepartements', 'latestEmployees'));
     }
 
+    // 3 New Employee Table
     public function read()
     {
         $data = Employee::select(['id', 'name', 'email', 'phone', 'address'])
