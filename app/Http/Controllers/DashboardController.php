@@ -16,8 +16,7 @@ class DashboardController extends Controller
         $totalEmployees = Employee::count();
         $totalPositions = Position::count();
         $employeeDepartements = Departement::withCount('employee')->get();
-        $latestEmployees = Employee::orderBy('id', 'desc')->take(5)->get();
-        return view('admin.dashboard', compact('totalEmployees', 'totalPositions', 'employeeDepartements', 'latestEmployees'));
+        return view('admin.dashboard', compact('totalEmployees', 'totalPositions', 'employeeDepartements'));
     }
 
     // 3 New Employee Table

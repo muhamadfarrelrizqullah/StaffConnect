@@ -46,10 +46,10 @@
                                                 <th>Email</th>
                                                 <th>Phone</th>
                                                 <th>Adress</th>
-                                                <th>Birthdate</th>
+                                                {{-- <th>Birthdate</th> --}}
                                                 <th>Departement</th>
                                                 <th>Position</th>
-                                                <th>Level</th>
+                                                {{-- <th>Level</th> --}}
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -413,16 +413,16 @@
                             return `<span class="text-gray-900 fw-bold fs-8">${data}</span>`;
                         }
                     },
-                    {
-                        data: 'birthdate',
-                        name: 'birthdate',
-                        orderable: true,
-                        render: function(data, type, row, meta) {
-                            let date = new Date(data);
-                            let formattedDate = date.toLocaleDateString('en-GB');
-                            return `<span class="text-gray-900 fw-bold fs-8">${formattedDate}</span>`;
-                        }
-                    },
+                    // {
+                    //     data: 'birthdate',
+                    //     name: 'birthdate',
+                    //     orderable: true,
+                    //     render: function(data, type, row, meta) {
+                    //         let date = new Date(data);
+                    //         let formattedDate = date.toLocaleDateString('en-GB');
+                    //         return `<span class="text-gray-900 fw-bold fs-8">${formattedDate}</span>`;
+                    //     }
+                    // },
                     {
                         data: 'departement_name',
                         name: 'departement_name',
@@ -439,20 +439,20 @@
                             return `<span class="badge badge-secondary">${data}</span>`;
                         }
                     },
-                    {
-                        data: 'position_level',
-                        name: 'position_level',
-                        orderable: true,
-                        render: function(data, type, row) {
-                            if (data === 'Manager') {
-                                return `<span class="badge badge-light-warning">${data}</span>`;
-                            } else if (data === 'Senior') {
-                                return `<span class="badge badge-light-primary">${data}</span>`;
-                            } else {
-                                return `<span class="badge badge-light-success">${data}</span>`;
-                            }
-                        }
-                    },
+                    // {
+                    //     data: 'position_level',
+                    //     name: 'position_level',
+                    //     orderable: true,
+                    //     render: function(data, type, row) {
+                    //         if (data === 'Manager') {
+                    //             return `<span class="badge badge-light-warning">${data}</span>`;
+                    //         } else if (data === 'Senior') {
+                    //             return `<span class="badge badge-light-primary">${data}</span>`;
+                    //         } else {
+                    //             return `<span class="badge badge-light-success">${data}</span>`;
+                    //         }
+                    //     }
+                    // },
                     {
                         data: null,
                         name: 'aksi',
